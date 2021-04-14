@@ -14,7 +14,7 @@ import ttl.larku.service.CourseService;
 import ttl.larku.service.StudentService;
 
 @Configuration
-@ComponentScan({"ttl.larku.service", "ttl.larku.dao", "ttl.larku.didemo"})
+@ComponentScan({"ttl.larku.service", "ttl.larku.dao"})
 @PropertySource({"classpath:/larkUContext.properties"})
 public class LarkUConfig {
 

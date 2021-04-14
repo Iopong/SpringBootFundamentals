@@ -8,10 +8,16 @@ import java.util.Map;
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.domain.Student;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 public class InMemoryStudentDAO implements BaseDAO<Student> {
 
     private Map<Integer, Student> students = new HashMap<Integer, Student>();
     private static int nextId = 0;
+
+    public InMemoryStudentDAO() {
+        int i = 0;
+    }
 
     public void update(Student updateObject) {
         if (students.containsKey(updateObject.getId())) {
