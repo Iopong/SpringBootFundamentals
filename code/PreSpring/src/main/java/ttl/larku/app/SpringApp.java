@@ -3,11 +3,13 @@ package ttl.larku.app;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.dao.MyFactory;
 import ttl.larku.domain.Course;
 import ttl.larku.domain.Student;
+import ttl.larku.jconfig.LarkUConfig;
 import ttl.larku.service.CourseService;
 import ttl.larku.service.StudentService;
 
@@ -23,8 +25,9 @@ public class SpringApp {
         //primeAndPrintBoth();
         SpringApp sapp = new SpringApp();
 //        sapp.postRequestToAddAStudent();
-        //sapp.getRequestForAllStudents();
-        sapp.testDAO();
+//        sapp.getRequestForAllStudents();
+        sapp.getRequestForAllCourses();
+//        sapp.testDAO();
     }
 
 
@@ -48,16 +51,36 @@ public class SpringApp {
     public void getRequestForAllStudents() {
         //StudentService ss = new StudentService();
 //        StudentService ss = MyFactory.studentService();
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        ApplicationContext context = new AnnotationConfigApplicationContext(LarkUConfig.class, OtherConfig.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(LarkUConfig.class);
 
         StudentService ss = context.getBean("studentService", StudentService.class);
 //        StudentService ss = (StudentService) context.getBean("studentService");
 
-        StudentService ss2 = context.getBean("studentService2", StudentService.class);
+//        StudentService ss2 = context.getBean("studentService2", StudentService.class);
 
         List<Student> students = ss.getAllStudents();
         System.out.println("All Students: " + students.size());
         students.forEach(System.out::println);
+    }
+
+    public void getRequestForAllCourses() {
+        //StudentService ss = new StudentService();
+//        StudentService ss = MyFactory.studentService();
+        //ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        ApplicationContext context = new AnnotationConfigApplicationContext(LarkUConfig.class, OtherConfig.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(LarkUConfig.class);
+
+        CourseService ss = context.getBean("courseService", CourseService.class);
+        init(ss);
+//        StudentService ss = (StudentService) context.getBean("studentService");
+
+//        StudentService ss2 = context.getBean("studentService2", StudentService.class);
+
+        List<Course> courses = ss.getAllCourses();
+        System.out.println("All Coruses: " + courses.size());
+        courses.forEach(System.out::println);
     }
 
     public static void primeAndPrintBoth() {
