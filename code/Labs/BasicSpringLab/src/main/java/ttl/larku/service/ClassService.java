@@ -1,17 +1,16 @@
 package ttl.larku.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.domain.Course;
 import ttl.larku.domain.ScheduledClass;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClassService {
 
     private CourseService courseService;
     private BaseDAO<ScheduledClass> classDAO;
-
 
     public ScheduledClass createScheduledClass(String courseCode, String startDate, String endDate) {
         Course course = courseService.getCourseByCode(courseCode);

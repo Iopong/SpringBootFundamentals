@@ -39,7 +39,7 @@ class B {
     //public B() {}
     public B(@Lazy A a) {
         this.a = a;
-        System.out.println(this.a.getClass());
+        System.out.println("In B(@Lazy A a) class of A is: " + this.a.getClass());
     }
 
     public void callA() {

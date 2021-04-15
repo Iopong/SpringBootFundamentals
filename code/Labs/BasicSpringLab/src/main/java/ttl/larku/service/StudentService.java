@@ -7,6 +7,7 @@ import ttl.larku.domain.Student;
 import javax.annotation.Resource;
 import java.util.List;
 
+//@Component
 @Service
 public class StudentService {
 

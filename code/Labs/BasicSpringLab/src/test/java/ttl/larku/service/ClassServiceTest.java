@@ -3,7 +3,6 @@ package ttl.larku.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ttl.larku.domain.Course;
@@ -25,6 +24,7 @@ public class ClassServiceTest {
     private ClassService classService;
     @Resource(name = "courseService")
     private CourseService courseService;
+
     @Resource(name = "studentService")
     private StudentService studentService;
 

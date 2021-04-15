@@ -1,23 +1,48 @@
 package ttl.larku.service;
 
+import org.springframework.stereotype.Service;
 import ttl.larku.domain.ScheduledClass;
 import ttl.larku.domain.Student;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 //TODO - Need to make this into a bean
-public class RegistrationService {
+@Service
+public class RegistrationService extends AbstractService{
 
     //TODO - something required here
-    private CourseService courseService;
-    private StudentService studentService;
-    private ClassService classService;
+//    @Autowired
+    private final CourseService courseService;
+//    @Autowired
+//    private final StudentService studentService;
+//    @Autowired
+    private final ClassService classService;
 
-    public RegistrationService() {
-        courseService = new CourseService();
-        studentService = new StudentService();
-        classService = new ClassService();
+
+
+    public RegistrationService(CourseService courseService, StudentService studentService, ClassService classService) {
+        super(studentService);
+
+        this.courseService = courseService;
+//        this.studentService = studentService;
+        this.classService = classService;
+
+        int studentCount = studentService.getAllStudents().size();
+    }
+
+//    public RegistrationService() {
+//        courseService = new CourseService();
+//        studentService = new StudentService();
+//        classService = new ClassService();
+//
+//    }
+
+    @PostConstruct
+    public void init() {
+        int studentCount = studentService.getAllStudents().size();
+
     }
 
 
@@ -70,9 +95,9 @@ public class RegistrationService {
     }
 
 
-    public void setCourseService(CourseService courseService) {
-        this.courseService = courseService;
-    }
+//    public void setCourseService(CourseService courseService) {
+//        this.courseService = courseService;
+//    }
 
 
     public StudentService getStudentService() {
@@ -80,9 +105,9 @@ public class RegistrationService {
     }
 
 
-    public void setStudentService(StudentService studentService) {
-        this.studentService = studentService;
-    }
+//    public void setStudentService(StudentService studentService) {
+//        this.studentService = studentService;
+//    }
 
 
     public ClassService getClassService() {
@@ -90,7 +115,7 @@ public class RegistrationService {
     }
 
 
-    public void setClassService(ClassService classService) {
-        this.classService = classService;
-    }
+//    public void setClassService(ClassService classService) {
+//        this.classService = classService;
+//    }
 }
