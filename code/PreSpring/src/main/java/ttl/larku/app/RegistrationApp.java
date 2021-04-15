@@ -34,7 +34,30 @@ public class RegistrationApp {
     }
 
     public static void getRequestForAllStudents() {
+        // -- What is wrong here?
+        // Wrong!! You are creating a new instance with each request.
+        // which means that there will be a different in-memory object map being
+        // created for each request.
         //StudentService ss = new StudentService();
+
+        // -- What are alternative?
+        // OPTION #1 - WRONG
+        // we can make the DAO a singleTon by making the students hashMap
+        // a static. Meaning every instance of the studentDAO will share the
+        // the same instance.
+        // but you don't want to make it a singleton to solve this problem. It has
+        // to be a semantic decision among many more.
+
+        // OPTION #2 - WRONG
+        // We could create a private property for studentService that we use to
+        // handle each request but having one object handle 1000s of request is not
+        // feasible. NOT thread safe either.
+
+        // OPTION #3
+        // -- OKAY Factory will return a new instance of a student service
+        // and in that service we will return a single instance of the DAO if
+        // if has been instantiated or create it has not been created. This
+        // however would not be thread safe for the DAO.
         StudentService ss = MyFactory.studentService();
         List<Student> students = ss.getAllStudents();
         System.out.println("All Students: " + students.size());

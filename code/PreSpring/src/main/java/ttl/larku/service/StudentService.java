@@ -12,9 +12,15 @@ public class StudentService {
 
     List<String> stuff = new ArrayList<>();
 
+    // You are delegating the database type creation to
+    // the service which isn't feasible. We would have to
+    // change this everytime the database changes. VERY BAD
     //private InMemoryStudentDAO studentDAO;
     private BaseDAO<Student> studentDAO;
 
+    // You are making a new InMemoryStudentDAO with each student service
+    // again we are hardcoding our database into the service which isn't
+    // good at all. VERY BAD.
     public StudentService() {
         studentDAO = new InMemoryStudentDAO();
     }
@@ -55,6 +61,9 @@ public class StudentService {
         return studentDAO;
     }
 
+
+    // -- GOOD we can delegate this to a factory that will set the DAO depending
+    // on which environment we are in.
     public void setStudentDAO(BaseDAO<Student> studentDAO) {
         this.studentDAO = studentDAO;
     }

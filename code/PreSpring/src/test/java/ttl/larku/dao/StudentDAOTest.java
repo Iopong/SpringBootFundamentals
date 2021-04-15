@@ -2,15 +2,31 @@ package ttl.larku.dao;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ttl.larku.dao.inmemory.InMemoryStudentDAO;
 import ttl.larku.domain.Student;
 import ttl.larku.domain.Student.Status;
+import ttl.larku.jconfig.LarkUConfig;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
+/**
+ * jUnit has no concept of autowire in testing.
+ * We use ExtendWith to tell it to extend with Spring, and
+ * use a configuration class for the objects that we need for
+ * autowiring.
+ *
+ * Spring will create the context on creation and keep re-using
+ * over and over. It will not reset the autowiring. Keep in mind
+ * that creating a context is quite expensive.
+ */
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {LarkUConfig.class})
 public class StudentDAOTest {
 
     private String name1 = "Bloke";

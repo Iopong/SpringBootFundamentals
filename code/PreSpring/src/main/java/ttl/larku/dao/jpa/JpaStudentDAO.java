@@ -8,6 +8,14 @@ import java.util.Map;
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.domain.Student;
 
+/**
+ * An interface is great! Because now both our repository
+ * types share the same contract.
+ *
+ * There is also an abstraction of what a DAO should be.
+ * Even though both have different storage implementations
+ * they share a similar contract.
+ */
 public class JpaStudentDAO implements BaseDAO<Student> {
 
     private Map<Integer, Student> students = new HashMap<Integer, Student>();

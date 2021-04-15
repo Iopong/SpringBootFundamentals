@@ -11,6 +11,29 @@ import ttl.larku.domain.Student;
 import ttl.larku.service.CourseService;
 import ttl.larku.service.StudentService;
 
+
+/**
+ * GREAT - this factory will manage the creation of
+ * our service object, and the associated DAO depending
+ * on the environment which is set in the configuration.
+ *
+ * This is an example of a dependency injection. We started
+ * out with our controller dependent on a particular service
+ * with a hardcoded DAO.
+ *
+ * We realized that our DAO could change for MYSQL, Postgres, InMemory
+ * which means we would have to change our services code. So we moved
+ * our DAO implementation behind a generic interface. So that we could have
+ * different DAO implementations of courses, and student.
+ *
+ * Then we created a factory to create our services, and return a DAO depending
+ * on the environment that we are in. This factory pattern is dependent on us
+ * having a configuration file that determines what our DAO is.
+ *
+ * Another approach is to pass the DAO through the constructor of the service. This
+ * would happen through constructor dependency injection. Spring is essentially a
+ * large factory that manages our object creation for us.
+ */
 public class MyFactory {
 
     private static BaseDAO<Student> studentDAO;

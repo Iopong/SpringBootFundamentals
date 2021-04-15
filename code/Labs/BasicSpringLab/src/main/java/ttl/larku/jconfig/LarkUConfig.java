@@ -11,6 +11,8 @@ import ttl.larku.domain.ScheduledClass;
 import ttl.larku.domain.Student;
 import ttl.larku.service.ClassService;
 import ttl.larku.service.CourseService;
+import ttl.larku.service.RegistrationService;
+import ttl.larku.service.StudentService;
 
 @Configuration
 public class LarkUConfig {
@@ -30,11 +32,23 @@ public class LarkUConfig {
         return new InMemoryStudentDAO();
     }
 
-    //TODO - Dependency Injection needed here.
+
+    @Bean
+    public StudentService studentService() {
+        StudentService ss = new StudentService();
+        return ss;
+    }
+
     @Bean
     public CourseService courseService() {
         CourseService cs = new CourseService();
         return cs;
+    }
+
+    @Bean
+    public RegistrationService registrationService() {
+        RegistrationService rs = new RegistrationService();
+        return rs;
     }
 
     @Bean

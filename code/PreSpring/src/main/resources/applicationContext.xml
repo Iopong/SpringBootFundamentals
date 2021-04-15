@@ -8,4 +8,40 @@
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context.xsd">
 
+
+    <!--
+        We tell spring what we want to call our bean, and give
+        it a location for where to look for the bean creation.
+
+        we can also specify the scope with scope
+        e.g. scope="prototype" or scope="singleton"
+
+        prototype - create a new one everytime it's ask to create one.
+        - The lifecycle of a prototype is the lifecycle of it's containing object
+        - so it isn't necessarily great design since if it lives on it's on and not
+        contained like the studentDAO it will have the lifecycle of the application.
+        - suppose we have a controller that needs to handle different types of request objects
+        this can be achieved with prototype.
+        - It can also be used in a method dependency injection where the lifecycle of the
+        object is scoped to the method.
+
+    -->
+    <bean id="inMemoryStudentDAO" class="ttl.larku.dao.inmemory.InMemoryStudentDAO" scope="prototype"/>
+
+
+    <!--
+        lazy-init -> true/false
+        - useful when it is expensive to make or it isn't used often.
+        - False -> first time it is created is when it is instantiated.
+        - True -> It will be eagerly created no matter whether it is first time or not.
+
+        The studentDAO object has the lifecycle of the bean it is
+    -->
+    <bean id="studentService" class="ttl.larku.service.StudentService">
+        <property name="studentDAO" ref="inMemoryStudentDAO" />
+    </bean>
+
+    <bean id="studentService2" class="ttl.larku.service.StudentService">
+        <property name="studentDAO" ref="inMemoryStudentDAO" />
+    </bean>
 </beans>

@@ -8,6 +8,20 @@ import java.util.Map;
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.domain.Course;
 
+/**
+ * An interface is great! Because now both our repository
+ * types share the same contract.
+ *
+ * There is also an abstraction of what a DAO should be.
+ * Even though both have different storage implementations
+ * they share a similar contract.
+ *
+ * ALWAYS, ALWAYS program to an interface not to an implementation.
+ *
+ * The two databases also share the same type which means that we would
+ * only need to change the DAO instantiation line if we wanted to argue the justification of
+ * this horrid design.
+ */
 public class JpaCourseDAO implements BaseDAO<Course> {
 
     private Map<Integer, Course> courses = new HashMap<Integer, Course>();
