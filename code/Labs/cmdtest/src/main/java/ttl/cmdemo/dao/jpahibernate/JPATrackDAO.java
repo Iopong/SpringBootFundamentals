@@ -1,8 +1,7 @@
-package ttl.larku.dao.inmemory;
+package ttl.cmdemo.dao.jpahibernate;
 
-import org.springframework.stereotype.Repository;
-import ttl.larku.dao.BaseDAO;
-import ttl.larku.domain.Track;
+import ttl.cmdemo.dao.BaseDAO;
+import ttl.cmdemo.domain.Track;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,8 +10,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Repository
-public class InMemoryTrackDAO implements BaseDAO<Track> {
+public class JPATrackDAO implements BaseDAO<Track> {
 
     private Map<Integer, Track> tracks = new ConcurrentHashMap<Integer, Track>();
     private static AtomicInteger nextId = new AtomicInteger(0);
