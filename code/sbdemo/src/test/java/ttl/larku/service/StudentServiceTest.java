@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import ttl.larku.domain.Student;
 import ttl.larku.jconfig.LarkUConfig;
+import ttl.larku.jconfig.LarkUTestDataConfig;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 ////@ContextConfiguration({ "classpath:applicationContext.xml" })
 //@ContextConfiguration(classes = LarkUConfig.class)
 //@ActiveProfiles({"development"})
-@SpringBootTest(classes = {LarkUConfig.class})
+@SpringBootTest(classes = {LarkUConfig.class, LarkUTestDataConfig.class})
 public class StudentServiceTest {
 
     private String name1 = "Bloke";

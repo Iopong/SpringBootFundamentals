@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import ttl.larku.domain.Course;
 import ttl.larku.jconfig.LarkUConfig;
+import ttl.larku.jconfig.LarkUTestDataConfig;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 //@ExtendWith(SpringExtension.class)
 //@ContextConfiguration(classes = LarkUConfig.class)
 //@SpringBootTest
-@SpringBootTest(classes = {LarkUConfig.class})
+@SpringBootTest(classes = {LarkUConfig.class, LarkUTestDataConfig.class})
 //@SpringBootTest(classes = {CourseService.class, InMemoryCourseDAO.class})
 public class CourseServiceTest {
 
