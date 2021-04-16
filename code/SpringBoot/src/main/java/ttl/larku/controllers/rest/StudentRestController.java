@@ -82,25 +82,24 @@ public class StudentRestController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteStudent(@PathVariable("id") int id) {
-        Student s = studentService.getStudent(id);
-        if (s == null) {
+        boolean result = studentService.deleteStudent(id);
+        if(!result) {
             RestResult rr = new RestResult("Student with id " + id + " not found");
             return ResponseEntity.badRequest().body(rr);
+        } else  {
+            return ResponseEntity.noContent().build();
         }
-        studentService.deleteStudent(id);
-        return ResponseEntity.noContent().build();
     }
 
     @PutMapping
     public ResponseEntity<?> updateStudent(@RequestBody Student student) {
-        int id = student.getId();
-        Student s = studentService.getStudent(id);
-        if (s == null) {
-            RestResult rr = new RestResult("Student with id " + id + " not found");
+        boolean result = studentService.updateStudent(student);
+        if (!result) {
+            RestResult rr = new RestResult("Student with id " + student.getId() + " not found");
             return ResponseEntity.badRequest().body(rr);
+        } else {
+            return ResponseEntity.noContent().build();
         }
-        studentService.updateStudent(student);
-        return ResponseEntity.noContent().build();
     }
 }
 

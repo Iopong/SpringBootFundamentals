@@ -27,15 +27,22 @@ public class StudentService {
         return student;
     }
 
-    public void deleteStudent(int id) {
+    public boolean deleteStudent(int id) {
         Student student = studentDAO.get(id);
         if (student != null) {
             studentDAO.delete(student);
+            return true;
         }
+        return false;
     }
 
-    public void updateStudent(Student student) {
-        studentDAO.update(student);
+    public boolean updateStudent(Student student) {
+        Student inDB = studentDAO.get(student.getId());
+        if (inDB != null) {
+            studentDAO.update(student);
+            return true;
+        }
+        return false;
     }
 
     public Student getStudent(int id) {

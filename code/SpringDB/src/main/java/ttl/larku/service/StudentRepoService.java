@@ -38,15 +38,23 @@ public class StudentRepoService implements StudentService {
     }
 
     @Override
-    public void deleteStudent(int id) {
-        studentDAO.findById(id).ifPresent(student -> {
+    public boolean deleteStudent(int id) {
+        Student student = studentDAO.findById(id).orElse(null);
+        if(student != null) {
             studentDAO.delete(student);
-        });
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void updateStudent(Student student) {
-        studentDAO.save(student);
+    public boolean updateStudent(Student student) {
+        Student inDB = studentDAO.findById(student.getId()).orElse(null);
+        if(inDB != null) {
+            studentDAO.save(student);
+            return true;
+        }
+        return false;
     }
 
     @Override

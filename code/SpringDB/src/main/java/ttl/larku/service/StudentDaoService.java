@@ -38,16 +38,23 @@ public class StudentDaoService implements StudentService {
     }
 
     @Override
-    public void deleteStudent(int id) {
+    public boolean deleteStudent(int id) {
         Student student = studentDAO.get(id);
         if (student != null) {
             studentDAO.delete(student);
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void updateStudent(Student student) {
-        studentDAO.update(student);
+    public boolean updateStudent(Student student) {
+        Student inDB = studentDAO.get(student.getId());
+        if (inDB != null) {
+            studentDAO.update(student);
+            return true;
+        }
+        return false;
     }
 
     @Override
